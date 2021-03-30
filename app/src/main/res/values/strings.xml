@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SignVerify</string>
+    <string name="hosgeldin">Hoşgeldin!</string>
+    <string name="fragement1_tanitim_yazisi">SignVerify uygulaması ile kolay bir şekilde imza doğrulama işlemi yapabilir ve belgelerin doğruluğunu ölçebilirsin</string>
 </resources>
