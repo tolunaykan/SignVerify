@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">SignVerify</string>
-    <string name="hosgeldin">Hoşgeldin!</string>
-    <string name="fragement1_tanitim_yazisi">SignVerify uygulaması ile kolay bir şekilde imza doğrulama işlemi yapabilir ve belgelerin doğruluğunu ölçebilirsin</string>
+    <string name="welcome_fragment_description">SignVerify uygulaması ile kolay bir şekilde imza doğrulama işlemi yapabilir ve belgelerin doğruluğunu ölçebilirsin</string>
+    <string name="welcome_fragment_title">SignVerify - İmza Doğrulama</string>
+    <string name="give_camera_permission">Kamera İzni Ver</string>
+    <string name="give_storage_permission">Belgelere Erişim İzni Ver</string>
+    <string name="came_permission_warning">Lütfen kamera iznini veriniz</string>
+    <string name="storage_permission_warning">Lütfen dosyalara erişim iznini veriniz</string>
 </resources>

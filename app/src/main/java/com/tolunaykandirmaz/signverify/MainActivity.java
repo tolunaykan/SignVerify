@@ -3,13 +3,12 @@ package com.tolunaykandirmaz.signverify;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.appintro.AppIntro;
-import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
-import com.tolunaykandirmaz.signverify.onboarding.fragment.CustomOnboardingFragment1;
+import com.tolunaykandirmaz.signverify.onboarding.fragment.DefaultFragment;
+import com.tolunaykandirmaz.signverify.onboarding.fragment.FragmentWithButtons;
 
 public class MainActivity extends AppIntro {
 
@@ -22,17 +21,9 @@ public class MainActivity extends AppIntro {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addSlide(AppIntroFragment.newInstance(getString(R.string.hosgeldin), getString(R.string.fragement1_tanitim_yazisi), R.mipmap.ic_launcher, Color.BLUE));
+        addSlide(DefaultFragment.newInstance(getString(R.string.welcome_fragment_title), getString(R.string.welcome_fragment_description), R.drawable.welcome));
 
-        addSlide(CustomOnboardingFragment1.newInstance());
-
-
-        addSlide(AppIntroFragment.newInstance(
-                "Clean App Intros",
-                "This library offers developers the ability to add clean app intros at the start of their apps.",
-                R.mipmap.ic_launcher
-        ));
-
+        addSlide(FragmentWithButtons.newInstance("Gerekli İzinler", "Uygulamayı kullanabilmek için bazı izinleri vermen gerekiyor", R.mipmap.ic_launcher));
 
         // Fade Transition
         setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
