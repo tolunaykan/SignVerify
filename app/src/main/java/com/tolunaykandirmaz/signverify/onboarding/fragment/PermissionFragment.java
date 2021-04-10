@@ -14,25 +14,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.appintro.SlidePolicy;
 import com.tolunaykandirmaz.signverify.R;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FragmentWithButtons extends Fragment implements SlidePolicy {
+public class PermissionFragment extends Fragment implements SlidePolicy {
 
     private TextView titleTextView, descriptionTextView;
 
     private ImageView imageView;
-
-    private Button storagePermissionButton;
-
-    private Button cameraPermissionButton;
 
     private final String title;
 
@@ -67,8 +63,8 @@ public class FragmentWithButtons extends Fragment implements SlidePolicy {
         titleTextView = view.findViewById(R.id.title);
         descriptionTextView = view.findViewById(R.id.description);
         imageView = view.findViewById(R.id.image);
-        storagePermissionButton = view.findViewById(R.id.storage_permission_button);
-        cameraPermissionButton = view.findViewById(R.id.camera_permission_button);
+        final Button storagePermissionButton = view.findViewById(R.id.storage_permission_button);
+        final Button cameraPermissionButton = view.findViewById(R.id.camera_permission_button);
 
         titleTextView.setText(title);
         descriptionTextView.setText(description);
@@ -81,7 +77,7 @@ public class FragmentWithButtons extends Fragment implements SlidePolicy {
 
     @Override
     public boolean isPolicyRespected() {
-        return isStoragePermissionConfirmed && isCameraPermissionConfirmed;
+        return checkStoragePermission() && checkCameraPermission();
     }
 
     @Override
@@ -96,62 +92,33 @@ public class FragmentWithButtons extends Fragment implements SlidePolicy {
 
     }
 
-    public static FragmentWithButtons newInstance(String title, String description, int image){
-        return new FragmentWithButtons(title, description, image);
+    private boolean checkStoragePermission(){
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private boolean checkStoragePermission(){
-        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    private boolean checkCameraPermission(){
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestStoragePermission(){
+
+        if(checkStoragePermission()){
+            Toast.makeText(requireContext(), requireContext().getString(R.string.storage_permission_exists), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         requestPermissions(storagePermissions, STORAGE_PERMISSION_REQUEST);
     }
 
     private void requestCameraPermission(){
+
+        if(checkCameraPermission()){
+            Toast.makeText(requireContext(), requireContext().getString(R.string.camera_permission_exists), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         requestPermissions(cameraPermissions, CAMERA_PERMISSION_REQUEST);
     }
-
-    private void pickFromGallery() {
-        Intent galleryPickIntent = new Intent(Intent.ACTION_PICK);
-        galleryPickIntent.setType("image/*");
-        startActivityForResult(galleryPickIntent,IMAGE_PICK_GALLERY_REQUEST);
-    }
-
-/*    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == RESULT_OK){
-            if(requestCode == IMAGE_PICK_GALLERY_REQUEST){
-                if (data != null) {
-                    Uri imageUri = data.getData();
-                    Bitmap bitmap = null;
-                    try {
-                        if (android.os.Build.VERSION.SDK_INT >= 29){
-                            bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), imageUri));
-                        } else{
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                        }
-
-                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-                        String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-                        Options.getInstance().setImageBase64(encodedImage);
-                        View view = viewPager2.findViewWithTag("ADDPHOTOTAG");
-                        if(view != null){
-                            ImageView imageView = view.findViewById(R.id.pager_item_add_photo_image);
-                            imageView.setImageBitmap(bitmap);
-                        }
-                        Toast.makeText(CreateActivity.this, R.string.photo_selected,Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        Log.d(TAG, "Foto Base64e çevrilemedi = " + e.getLocalizedMessage());
-                        Toast.makeText(CreateActivity.this, R.string.photo_not_selected,Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -48,8 +48,4 @@ public class DefaultFragment extends Fragment {
 
     }
 
-    public static DefaultFragment newInstance(String title, String description, int image){
-        return new DefaultFragment(title, description, image);
-    }
-
 }

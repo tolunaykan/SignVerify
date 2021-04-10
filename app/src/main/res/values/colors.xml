@@ -13,5 +13,8 @@
     <color name="onboarding_title">#000000</color>
     <color name="onboarding_background">#FFFFFF</color>
     <color name="onboarding_description">#3C3B3B</color>
+    <color name="onboarding_indicator_selected">#2196F3</color>
+    <color name="onboarding_indicator_unselected">#61ADEA</color>
+    <color name="onboarding_buttons">#61ADEA</color>
 
 </resources>

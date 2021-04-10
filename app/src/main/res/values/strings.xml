@@ -2,8 +2,19 @@
     <string name="app_name">SignVerify</string>
     <string name="welcome_fragment_description">SignVerify uygulaması ile kolay bir şekilde imza doğrulama işlemi yapabilir ve belgelerin doğruluğunu ölçebilirsin</string>
     <string name="welcome_fragment_title">SignVerify - İmza Doğrulama</string>
-    <string name="give_camera_permission">Kamera İzni Ver</string>
+    <string name="give_camera_permission">Kameraya Erişim İzni Ver</string>
     <string name="give_storage_permission">Belgelere Erişim İzni Ver</string>
     <string name="came_permission_warning">Lütfen kamera iznini veriniz</string>
     <string name="storage_permission_warning">Lütfen dosyalara erişim iznini veriniz</string>
+    <string name="done">Bitir</string>
+    <string name="permission_fragment_title">Gerekli İzinler</string>
+    <string name="permission_fragment_description">Uygulamayı kullanabilmek için bazı izinleri vermen gerekiyor</string>
+    <string name="take_picture">Fotoğraf Çek</string>
+    <string name="pick_from_gallery">Galeriden Seç</string>
+    <string name="chose_picture_warning">Lütfen referans imzanı ekle</string>
+    <string name="reference_signature_selected">Referans imza seçildi</string>
+    <string name="reference_fragment_title">Referans İmza</string>
+    <string name="reference_fragment_description">İmza doğrulaması için referans imzanızı seçin</string>
+    <string name="storage_permission_exists">Dosyalara erişim izni zaten verdiniz!</string>
+    <string name="camera_permission_exists">Kamera erişim iznini zaten verdiniz!</string>
 </resources>
