@@ -17,4 +17,5 @@
     <string name="reference_fragment_description">İmza doğrulaması için referans imzanızı seçin</string>
     <string name="storage_permission_exists">Dosyalara erişim izni zaten verdiniz!</string>
     <string name="camera_permission_exists">Kamera erişim iznini zaten verdiniz!</string>
+    <string name="scan">Tara</string>
 </resources>

@@ -17,4 +17,7 @@
     <color name="onboarding_indicator_unselected">#61ADEA</color>
     <color name="onboarding_buttons">#61ADEA</color>
 
+    <!-- MAIN ACTIVITY COLORS -->
+    <color name="main_activity_background">#000000</color>
+
 </resources>

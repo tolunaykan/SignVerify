@@ -1,2 +1,7 @@
+include ':opencv'
 include ':app'
 rootProject.name = "SignVerify"
+include ':opencv'
+include ':opencv'
+include ':opencv'
+include ':opencv'
