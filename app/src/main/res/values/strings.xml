@@ -18,4 +18,6 @@
     <string name="storage_permission_exists">Dosyalara erişim izni zaten verdiniz!</string>
     <string name="camera_permission_exists">Kamera erişim iznini zaten verdiniz!</string>
     <string name="scan">Tara</string>
+    <string name="signaure_verify_failure">İmza doğrulama başarısız</string>
+    <string name="scanning">Taranıyor...</string>
 </resources>

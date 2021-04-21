@@ -106,7 +106,7 @@ public class ReferenceFragment extends Fragment implements SlidePolicy {
 
                 imageView.setImageBitmap(bitmap);
                 //String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-                Utils.saveImage(requireContext(), bitmap, Constants.CHOSEN_IMAGE_NAME);
+                Utils.saveImage(requireContext(), bitmap, Constants.REFERENCE_IMAGE_NAME);
                 isPictureChosen = true;
                 Toast.makeText(requireContext(), getString(R.string.reference_signature_selected), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -118,7 +118,7 @@ public class ReferenceFragment extends Fragment implements SlidePolicy {
                 Bundle extras = data.getExtras();
                 Bitmap bitmap = (Bitmap) extras.get("data");
                 imageView.setImageBitmap(bitmap);
-                Utils.saveImage(requireContext(), bitmap, Constants.CHOSEN_IMAGE_NAME);
+                Utils.saveImage(requireContext(), bitmap, Constants.REFERENCE_IMAGE_NAME);
                 isPictureChosen = true;
                 Toast.makeText(requireContext(), getString(R.string.reference_signature_selected), Toast.LENGTH_SHORT).show();
             } catch (Exception e){
