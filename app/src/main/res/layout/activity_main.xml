@@ -39,11 +39,6 @@
     </LinearLayout>
 
     <include
-        android:id="@+id/loading_layout"
-        android:visibility="gone"
-        layout="@layout/signature_verify_loading" />
-
-    <include
         android:id="@+id/result_layout"
         layout="@layout/signature_verify_result"
         android:layout_width="0dp"

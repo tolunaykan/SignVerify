@@ -1,6 +1,9 @@
 package com.tolunaykandirmaz.signverify.rest.client;
 
-import com.tolunaykandirmaz.signverify.rest.model.RestClientResponse;
+import com.tolunaykandirmaz.signverify.rest.model.DetectResponse;
+import com.tolunaykandirmaz.signverify.rest.model.VerifyResponse;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -12,5 +15,9 @@ public interface RestClient {
 
     @Multipart
     @POST("api/v1/verify")
-    Call<RestClientResponse> verifySignature(@Part MultipartBody.Part queryImage, @Part MultipartBody.Part referenceImage);
+    Call<VerifyResponse> verifySignature(@Part MultipartBody.Part queryImage, @Part MultipartBody.Part referenceImage);
+
+    @Multipart
+    @POST("api/v1/detect")
+    Call<List<DetectResponse>> detectSignature(@Part MultipartBody.Part image);
 }

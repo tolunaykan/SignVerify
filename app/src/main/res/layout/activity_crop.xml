@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_activity_background"
+    tools:context=".CropActivity">
+
+    <ImageView
+        android:id="@+id/signature_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_weight="1" />
+
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/signature_image_crop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cropShowProgressBar="true"
+        app:cropBorderCornerColor="#2196F3"
+        app:cropBorderCornerOffset="0dp"
+        app:cropBorderCornerLength="20dp"
+        app:cropBorderCornerThickness="3dp"
+        app:cropBorderLineColor="#E91E63"
+        app:cropBorderLineThickness="1dp"
+        android:visibility="gone"
+        android:layout_weight="1" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/signature_image"
+        app:layout_constraintEnd_toEndOf="@id/signature_image"
+        app:layout_constraintTop_toTopOf="@id/signature_image"
+        app:layout_constraintBottom_toBottomOf="@id/signature_image"
+        android:scaleType="fitXY"
+        app:lottie_speed="1.5"
+        app:lottie_rawRes="@raw/lottie_scan_verify"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Verify" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

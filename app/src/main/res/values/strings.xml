@@ -20,4 +20,5 @@
     <string name="scan">Tara</string>
     <string name="signaure_verify_failure">İmza doğrulama başarısız</string>
     <string name="scanning">Taranıyor...</string>
+    <string name="signature_not_detected">Hiç imza algılanamadı!</string>
 </resources>

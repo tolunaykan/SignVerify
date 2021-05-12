@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RestClientResponse extends BaseResponse {
+public class VerifyResponse extends BaseResponse {
 
     private Integer isReal;
 
-    public RestClientResponse(String status, String message, Integer isReal) {
+    public VerifyResponse(String status, String message, Integer isReal) {
         super(status, message);
         this.isReal = isReal;
     }

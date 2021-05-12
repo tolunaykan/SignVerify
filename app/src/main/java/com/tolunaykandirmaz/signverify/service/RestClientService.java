@@ -6,10 +6,13 @@ import android.graphics.Bitmap;
 import com.tolunaykandirmaz.signverify.Utils;
 import com.tolunaykandirmaz.signverify.rest.RestClientFactory;
 import com.tolunaykandirmaz.signverify.rest.client.RestClient;
+import com.tolunaykandirmaz.signverify.rest.model.DetectResponse;
 import com.tolunaykandirmaz.signverify.rest.model.ResponseListener;
-import com.tolunaykandirmaz.signverify.rest.model.RestClientResponse;
+import com.tolunaykandirmaz.signverify.rest.model.VerifyResponse;
+import com.tolunaykandirmaz.signverify.rest.model.VerifyResponseListener;
 
 import java.io.File;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -25,9 +28,13 @@ public class RestClientService {
 
     private static final String REFERENCE_IMAGE_REQUEST_KEY = "referenceImage";
 
+    private static final String SIGNATURE_DOCUMENT_IMAGE_REQUEST_KEY = "image";
+
     private static final String QUERY_IMAGE_NAME = "queryImage.png";
 
     private static final String REFERENCE_IMAGE_NAME = "queryImage.png";
+
+    private static final String SIGNATURE_DOCUMENT_IMAGE_NAME = "signatureDocumentImage.png";
 
     private final Context context;
 
@@ -53,15 +60,33 @@ public class RestClientService {
         final MultipartBody.Part queryImagePart = createImagePart(queryBitmap, QUERY_IMAGE_NAME, QUERY_IMAGE_REQUEST_KEY);
         final MultipartBody.Part referenceImagePart = createImagePart(referenceBitmap, REFERENCE_IMAGE_NAME, REFERENCE_IMAGE_REQUEST_KEY);
 
-        restClient.verifySignature(queryImagePart, referenceImagePart).enqueue(new Callback<RestClientResponse>() {
+        restClient.verifySignature(queryImagePart, referenceImagePart).enqueue(new Callback<VerifyResponse>() {
             @Override
-            public void onResponse(Call<RestClientResponse> call, Response<RestClientResponse> response) {
-                final RestClientResponse restClientResponse = response.body();
-                listener.onSuccess(restClientResponse);
+            public void onResponse(Call<VerifyResponse> call, Response<VerifyResponse> response) {
+                final VerifyResponse verifyResponse = response.body();
+                listener.onSuccess(verifyResponse);
             }
 
             @Override
-            public void onFailure(Call<RestClientResponse> call, Throwable t) {
+            public void onFailure(Call<VerifyResponse> call, Throwable t) {
+                listener.onFailure();
+            }
+        });
+    }
+
+    public void detectSignature(Bitmap image, VerifyResponseListener listener) throws Exception {
+
+        final MultipartBody.Part imagePart = createImagePart(image, SIGNATURE_DOCUMENT_IMAGE_NAME, SIGNATURE_DOCUMENT_IMAGE_REQUEST_KEY);
+
+        restClient.detectSignature(imagePart).enqueue(new Callback<List<DetectResponse>>() {
+            @Override
+            public void onResponse(Call<List<DetectResponse>> call, Response<List<DetectResponse>> response) {
+                final List<DetectResponse> detectResponse = response.body();
+                listener.onSuccess(detectResponse);
+            }
+
+            @Override
+            public void onFailure(Call<List<DetectResponse>> call, Throwable t) {
                 listener.onFailure();
             }
         });

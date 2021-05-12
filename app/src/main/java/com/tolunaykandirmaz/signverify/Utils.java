@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +16,9 @@ public class Utils {
 
     private static final String DIRECTORY_NAME = "SignVerify";
 
-    public static void saveImage(Context context, Bitmap bitmap, String fileName) throws Exception{
+    public static Bitmap passBitmapHelper;
+
+    public static void saveImage(Context context, Bitmap bitmap, String fileName) throws Exception {
         ContextWrapper contextWrapper = new ContextWrapper(context);
 
         File directory = contextWrapper.getDir(DIRECTORY_NAME, Context.MODE_PRIVATE);
@@ -67,19 +70,11 @@ public class Utils {
         return null;
     }
 
-/*    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  *//* prefix *//*
-                ".jpg",         *//* suffix *//*
-                storageDir      *//* directory *//*
-        );
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
 
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
-    }*/
+
 }
