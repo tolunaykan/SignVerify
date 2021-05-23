@@ -21,4 +21,6 @@
     <string name="signaure_verify_failure">İmza doğrulama başarısız</string>
     <string name="scanning">Taranıyor...</string>
     <string name="signature_not_detected">Hiç imza algılanamadı!</string>
+    <string name="failure_while_saving_ref_signature">Referans imza seçilirken hata oluştu</string>
+    <string name="verify">Onayla</string>
 </resources>

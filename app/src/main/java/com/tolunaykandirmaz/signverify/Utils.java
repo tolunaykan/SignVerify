@@ -10,13 +10,14 @@ import android.util.Log;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class Utils {
 
     private static final String DIRECTORY_NAME = "SignVerify";
 
     public static Bitmap passBitmapHelper;
+
+    public static boolean referenceImageSelected = false;
 
     public static void saveImage(Context context, Bitmap bitmap, String fileName) throws Exception {
         ContextWrapper contextWrapper = new ContextWrapper(context);
@@ -49,8 +50,7 @@ public class Utils {
         ContextWrapper contextWrapper = new ContextWrapper(context);
         File file = new File(contextWrapper.getCacheDir(), fileName);
         try {
-            boolean isFileCreated = file.createNewFile();
-            if (isFileCreated) throw new IOException();
+            file.createNewFile();
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);

@@ -1,6 +1,5 @@
 package com.tolunaykandirmaz.signverify;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,20 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
-
-import com.airbnb.lottie.LottieAnimationView;
-import com.theartofdev.edmodo.cropper.CropImageView;
-import com.tolunaykandirmaz.signverify.rest.model.BaseResponse;
-import com.tolunaykandirmaz.signverify.rest.model.ResponseListener;
-import com.tolunaykandirmaz.signverify.service.RestClientService;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,12 +22,6 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout scanLayout;
-
-    private ConstraintLayout resultLayout;
-
-    private LottieAnimationView resultLottieView;
-
-    private CropImageView cropImageView;
 
     private String currentPhotoPath;
 
@@ -47,34 +32,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         scanLayout = findViewById(R.id.scan_layout);
-        resultLayout = findViewById(R.id.result_layout);
-        resultLottieView = resultLayout.findViewById(R.id.animationView3);
 
         scanLayout.setOnClickListener(v -> takePicture());
 
-        resultLottieView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                closeResultLayout();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
     }
 
     private void takePicture() {
@@ -112,36 +73,6 @@ public class MainActivity extends AppCompatActivity {
         Utils.passBitmapHelper = image;
 
         startActivity(cropActivity);
-    }
-
-    private void verifySignature(Bitmap queryImage) throws Exception {
-
-        cropImageView.setImageBitmap(queryImage);
-        //showLoadingLayout();
-        final Bitmap referenceBitmap = Utils.getImage(getApplicationContext(), Constants.REFERENCE_IMAGE_NAME);
-
-        final RestClientService restClientService = RestClientService.getInstance(getApplicationContext());
-        restClientService.getResult(queryImage, referenceBitmap, new ResponseListener() {
-            @Override
-            public void onSuccess(BaseResponse baseResponse) {
-                //closeLoadingLayout();
-                showResultLayout();
-            }
-
-            @Override
-            public void onFailure() {
-                //closeLoadingLayout();
-            }
-        });
-        //Toast.makeText(getApplicationContext(), String.valueOf(response.getIsReal()), Toast.LENGTH_SHORT).show();
-    }
-
-    private void showResultLayout() {
-        resultLayout.setVisibility(View.VISIBLE);
-    }
-
-    private void closeResultLayout() {
-        resultLayout.setVisibility(View.GONE);
     }
 
     private File createImageFile() throws IOException {

@@ -3,6 +3,7 @@ package com.tolunaykandirmaz.signverify.service;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.tolunaykandirmaz.signverify.Constants;
 import com.tolunaykandirmaz.signverify.Utils;
 import com.tolunaykandirmaz.signverify.rest.RestClientFactory;
 import com.tolunaykandirmaz.signverify.rest.client.RestClient;
@@ -32,7 +33,7 @@ public class RestClientService {
 
     private static final String QUERY_IMAGE_NAME = "queryImage.png";
 
-    private static final String REFERENCE_IMAGE_NAME = "queryImage.png";
+    private static final String REFERENCE_IMAGE_NAME = Constants.REFERENCE_IMAGE_NAME;
 
     private static final String SIGNATURE_DOCUMENT_IMAGE_NAME = "signatureDocumentImage.png";
 
