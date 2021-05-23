@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SignVerify</string>
     <string name="welcome_fragment_description">SignVerify uygulaması ile kolay bir şekilde imza doğrulama işlemi yapabilir ve belgelerin doğruluğunu ölçebilirsin</string>
-    <string name="welcome_fragment_title">SignVerify - İmza Doğrulama</string>
+    <string name="welcome_fragment_title">SignVerify</string>
     <string name="give_camera_permission">Kameraya Erişim İzni Ver</string>
     <string name="give_storage_permission">Belgelere Erişim İzni Ver</string>
     <string name="came_permission_warning">Lütfen kamera iznini veriniz</string>

@@ -201,7 +201,7 @@ public class ReferenceFragment extends Fragment implements SlidePolicy {
         super.onResume();
 
         if (Utils.referenceImageSelected) {
-            imageView.setImageBitmap(Utils.passBitmapHelper);
+            //imageView.setImageBitmap(Utils.passBitmapHelper);
             Toast.makeText(requireContext(), requireContext().getString(R.string.reference_signature_selected), Toast.LENGTH_SHORT).show();
             isPictureChosen = true;
 

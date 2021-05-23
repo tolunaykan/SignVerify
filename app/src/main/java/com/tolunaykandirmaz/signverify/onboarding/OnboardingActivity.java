@@ -6,8 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.github.appintro.AppIntro2;
-import com.github.appintro.AppIntroPageTransformerType;
+import com.github.appintro.AppIntro;
 import com.tolunaykandirmaz.signverify.Constants;
 import com.tolunaykandirmaz.signverify.MainActivity;
 import com.tolunaykandirmaz.signverify.R;
@@ -16,14 +15,14 @@ import com.tolunaykandirmaz.signverify.onboarding.fragment.DefaultFragment;
 import com.tolunaykandirmaz.signverify.onboarding.fragment.PermissionFragment;
 import com.tolunaykandirmaz.signverify.onboarding.fragment.ReferenceFragment;
 
-public class OnboardingActivity extends AppIntro2 {
+public class OnboardingActivity extends AppIntro {
 
     @Override
     protected void onStart() {
 
         SharedPreferencesManager sharedPreferencesManager = SharedPreferencesManager.getInstance(getApplicationContext());
         boolean isOnboardingDone = sharedPreferencesManager.getBoolean(Constants.SharedPrefConstants.IS_ONBOARDING_DONE);
-        if (isOnboardingDone){
+        if (isOnboardingDone) {
             startMainActivity();
         }
 
@@ -34,21 +33,21 @@ public class OnboardingActivity extends AppIntro2 {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final DefaultFragment welcomeFragment = new DefaultFragment(getString(R.string.welcome_fragment_title), getString(R.string.welcome_fragment_description), R.drawable.welcome);
+        final DefaultFragment welcomeFragment = new DefaultFragment(getString(R.string.welcome_fragment_title), getString(R.string.welcome_fragment_description), R.drawable.onboarding1);
         addSlide(welcomeFragment);
 
-        final PermissionFragment permissionFragment = new PermissionFragment(getString(R.string.permission_fragment_title), getString(R.string.permission_fragment_description), R.mipmap.ic_launcher);
+        final PermissionFragment permissionFragment = new PermissionFragment(getString(R.string.permission_fragment_title), getString(R.string.permission_fragment_description), R.drawable.onboarding2);
         addSlide(permissionFragment);
 
-        final DefaultFragment tempFragment = new DefaultFragment("Geçiçi Fragment", "Geçici çözüm için koyuldu", R.drawable.welcome);
+        final DefaultFragment tempFragment = new DefaultFragment("Geçiçi Fragment", "Geçici çözüm için koyuldu", R.drawable.onboarding1);
         addSlide(tempFragment);
 
-        final ReferenceFragment referenceFragment = new ReferenceFragment(getString(R.string.reference_fragment_title), getString(R.string.reference_fragment_description), R.color.black);
+        final ReferenceFragment referenceFragment = new ReferenceFragment(getString(R.string.reference_fragment_title), getString(R.string.reference_fragment_description), R.drawable.onboarding3);
         addSlide(referenceFragment);
 
 
         // Fade Transition
-        setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
+        //setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
 
         //setColorDoneText(getColor(R.color.onboarding_buttons));
         setNextArrowColor(getColor(R.color.onboarding_buttons));
@@ -58,7 +57,7 @@ public class OnboardingActivity extends AppIntro2 {
 
         setSkipButtonEnabled(false);
         setWizardMode(true);
-        //setDoneText(R.string.done);
+        setDoneText(R.string.done);
     }
 
     @Override
